@@ -10,7 +10,7 @@ JOIN Categories as C ON P.CategoryId = C.CategoryId;
 ```
 SELECT OrderID, ShipperName from Orders as O
 JOIN Shippers as S on O.ShipperId = S.ShipperId
-;
+WHERE OrderDate < "1997-01-09";
 ```
 ### Display all ProductNames and Quantities placed on order 10251. Sort by ProductName. Shows 3 records.
 ```
