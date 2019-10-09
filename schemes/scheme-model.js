@@ -1,27 +1,24 @@
-module.exports = {
-    find,
-    findById,
-    findSteps,
-    add,
-    update,
-    remove
-}
+const express = require("express");
+const db = require("../data/db-config.js");
+
 
 const find = () => {
-//   - Calling find returns a promise that resolves to an array of all schemes in the database.
-//   - No steps are included.
+
+    return db("schemes");
 }
 
 const findById = (id) => {
-//   - Expects a scheme `id` as its only parameter.
-//   - Resolve to a single scheme object.
-//   - On an invalid `id`, resolves to `null`.    
+
+    return db("schemes").where({id}).first();
+  
 }
 
 const findSteps = (id) => {
 //   - Expects a scheme `id`.
 //   - Resolves to an array of all correctly ordered step for the given scheme: `[ { id: 17, scheme_name: 'Find the Holy Grail', step_number: 1, instructions: 'quest'}, { id: 18, scheme_name: 'Find the Holy Grail', step_number: 2, instructions: '...and quest'}, etc. ]`.
 //   - This array should include the `scheme_name` _not_ the `scheme_id`.    
+    return db("steps").where({id})
+
 }
 
 const add = (scheme) => {
@@ -43,3 +40,11 @@ const remove = (id) => {
 //   - (Hint: Only worry about removing the `scheme`. The database is configured to automatically remove all associated steps.)    
 }
 
+module.exports = {
+    find,
+    findById,
+    findSteps,
+    add,
+    update,
+    remove
+}
